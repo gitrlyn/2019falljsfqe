@@ -68,10 +68,17 @@
         </div>
       </div>
     </div>
+    <!-- square brackets mean from the view model to the dom  
+    the *ngIf prevents the animation from starting for the first quiz selected, so make a new div
+    for the animations, and next the selected quiz stuff inside it.-->
     <div 
       class="col-md-8"
-      *ngIf="selectedQuiz != undefined"
+      [@detailsFromLeft]="detailsAnimationState"
+      (@detailsFromLeft.done)="detailsAnimationComplete()"
     >
+      <div 
+        *ngIf="selectedQuiz != undefined"
+      >
       <button 
         class="btn mb-3"
         [class.btn-outline-dark]="numberOfDeletedQuizzes + numberOfAddedQuizzes + numberOfEditedQuizzes === 0"
@@ -174,6 +181,8 @@
           </div>
         </div>
       </div>
+    </div>
+    
   </div>
 </div>
 
